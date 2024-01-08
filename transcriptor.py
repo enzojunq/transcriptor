@@ -10,6 +10,9 @@ import pydub
 import openai
 from dotenv import load_dotenv,find_dotenv
 
+PASTA_ARQUIVOS = Path(__file__).parent / 'arquivos'
+PASTA_ARQUIVOS.mkdir(exist_ok=True)
+
 _ = load_dotenv(find_dotenv())
 
 ## OPEN AI ===========================
@@ -50,6 +53,8 @@ def tab_gravar_reuniao():
     
     container = st.empty()
     container.markdown('Gravando...')
+    pasta_reuniao = PASTA_ARQUIVOS / datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
+    pasta_reuniao.mkdir()
     
     audio_chunk = pydub.AudioSegment.empty()
     
@@ -71,7 +76,7 @@ def tab_gravar_reuniao():
                 )
                 audio_chunk += sound
             if len(audio_chunk) > 0 :
-                audio_chunk.export('audio_temp.mp3')
+                audio_chunk.export(pasta_reuniao / 'audio_temp.mp3')
             
         else:
             break
