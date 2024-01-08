@@ -11,8 +11,9 @@ import openai
 from dotenv import load_dotenv,find_dotenv
 
 _ = load_dotenv(find_dotenv())
+
 ## OPEN AI ===========================
-client = openai.OpenAI()
+client = openai.OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
 
 def transcreve_audio(caminho_audio,language='pt',response_format='text'):
     with open(caminho_audio, 'rb') as arquivo_audio:  
