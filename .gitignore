@@ -2,6 +2,6 @@
 /audio_temp.mp3
 /mario_death.mp3
 /venv
-.streamlit
+secrets.toml
 ffmpeg.exe
 arquivos
